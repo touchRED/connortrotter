@@ -2,8 +2,18 @@
   <div class="project">
     <div class="project-hero">
       <div class="project-hero__block" v-for="block in channelData.contents" v-bind:key="block.id">
-        <div class="project-hero__image preload" v-if="block.image" v-bind:preload="block.image ? block.image.display.url : ''"></div>
-        <div class="project-hero__content" v-else v-html="block.content_html ? block.content_html : ''"></div>
+        <div
+          class="project-hero__image preload"
+          v-if="block.image"
+          v-bind:preload="block.image ? block.image.display.url : ''"
+        >
+          <img class="preload" v-bind:preload="block.image ? block.image.display.url : ''" />
+        </div>
+        <div
+          class="project-hero__content"
+          v-else
+          v-html="block.content_html ? block.content_html : ''"
+        ></div>
       </div>
     </div>
   </div>
@@ -15,7 +25,7 @@ import { TweenMax } from 'gsap'
 
 export default {
   asyncData(context) {
-      // console.log(context)
+    // console.log(context)
     return axios.get("http://api.are.na/v2/channels/" + context.params.slug)
       .then((res) => {
         // console.log(res.data)
@@ -24,7 +34,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      console.log("GlobalMask root-attached: ", this.$root.$loading)
+      // console.log("GlobalMask root-attached: ", this.$root.$loading)
       this.$root.$loading.hide()
     })
 
@@ -32,16 +42,21 @@ export default {
 
     preloads.forEach(preload => {
       let preloadURL = preload.getAttribute("preload")
-      if(preloadURL == "") return
+      if (preloadURL == "") return
       let image = new Image();
 
-			/* --- Use Img load to measure for background-image --- */
-			image.onload = ()=>{
-				preload.style.backgroundImage = "url(" + preloadURL + ")";
-				preload.className += " preloaded";
-			};
+      /* --- Use Img load to measure for background-image --- */
+      image.onload = () => {
+        if (preload.tagName.toLowerCase() == "img") {
+          preload.src = preloadURL;
+        } else {
+          preload.style.backgroundImage = "url(" + preloadURL + ")";
+        }
 
-			image.src = preloadURL;
+        preload.className += " preloaded";
+      };
+
+      image.src = preloadURL;
     })
   }
 }
@@ -49,7 +64,6 @@ export default {
 
 <style lang="scss">
 .project {
-
   &-hero {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -62,7 +76,6 @@ export default {
     }
 
     &__block {
-
     }
 
     &__image {
@@ -70,6 +83,20 @@ export default {
       background-position: center;
       background-size: contain;
       background-repeat: no-repeat;
+
+      @media (max-width: 768px) {
+        padding: 0;
+      }
+
+      img {
+        display: none;
+
+        @media (max-width: 768px) {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+      }
     }
 
     &__content {

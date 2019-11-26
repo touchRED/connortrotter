@@ -9,7 +9,10 @@
       <div class="work__grid">
         <div class="work__item" v-for="block in channelData.slice(1)" v-bind:key="block.id">
           <nuxt-link v-bind:to="'/project/' + block.slug + '/'" prefetch>
-            <div class="work__item-image preload" v-bind:preload="block.contents[0].image.display.url"></div>
+            <div
+              class="work__item-image preload"
+              v-bind:preload="block.contents[0].image.display.url"
+            ></div>
           </nuxt-link>
           <p>{{ block.title }}</p>
         </div>
@@ -26,15 +29,15 @@ import GlobalMask from '~/components/GlobalMask.vue'
 
 export default {
   asyncData(context) {
-      return axios.get("http://api.are.na/v2/channels/site-yufxd4bzdt8")
+    return axios.get("http://api.are.na/v2/channels/site-yufxd4bzdt8")
       .then((res) => {
         let promises = []
         res.data.contents = res.data.contents.map(content => {
-          if(content.base_class == 'Channel'){
+          if (content.base_class == 'Channel') {
             return axios.get("http://api.are.na/v2/channels/" + content.slug).then(res => {
               return res.data
             })
-          }else {
+          } else {
             return content
           }
         })
@@ -44,22 +47,22 @@ export default {
       })
       .then(fetched => {
         // console.log(fetched)
-        return { channelData: fetched}
+        return { channelData: fetched }
       })
   },
   components: {
     Shader,
     GlobalMask
   },
-  mounted(){
+  mounted() {
     this.$nextTick(() => {
       console.log("GlobalMask include: ", GlobalMask)
       console.log("GlobalMask root-attached: ", this.$root.$loading)
-      console.log("this: ", this)
+      // console.log("this: ", this)
       this.$root.$loading.hide()
     })
     // if(GlobalMask.hide){
-      // GlobalMask.hide()
+    // GlobalMask.hide()
     // }
 
     let preloads = this.$el.querySelectorAll(".preload")
@@ -68,13 +71,13 @@ export default {
       let preloadURL = preload.getAttribute("preload")
       let image = new Image();
 
-			/* --- Use Img load to measure for background-image --- */
-			image.onload = ()=>{
-				preload.style.backgroundImage = "url(" + preloadURL + ")";
-				preload.className += " preloaded";
-			};
+      /* --- Use Img load to measure for background-image --- */
+      image.onload = () => {
+        preload.style.backgroundImage = "url(" + preloadURL + ")";
+        preload.className += " preloaded";
+      };
 
-			image.src = preloadURL;
+      image.src = preloadURL;
     })
   }
 }
@@ -143,8 +146,8 @@ export default {
     grid-column-gap: 60px;
 
     @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-        grid-row-gap: 30px;
+      grid-template-columns: 1fr;
+      grid-row-gap: 30px;
     }
   }
 

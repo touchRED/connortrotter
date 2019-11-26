@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:class="['global-mask', {active: loading}]"></div>
+  <div v-bind:class="['global-mask', {active: loading}]"></div>
 </template>
 
 <script>
@@ -10,14 +10,16 @@ export default {
     loading: false
   }),
   methods: {
-    start () {
-        // TweenMax.to('.global-mask', 0.3, {autoAlpha: 1})
-        this.loading = true
+    start() {
+      // TweenMax.to('.global-mask', 0.3, {autoAlpha: 1})
+      console.log("component start: ", this)
+      this.loading = true
     },
-    finish () {},
-    hide () {
-        //   TweenMax.to('.global-mask', 0.3, {autoAlpha: 0, delay: 0.3})
-        this.loading = false
+    finish() { },
+    hide() {
+      //   TweenMax.to('.global-mask', 0.3, {autoAlpha: 0, delay: 0.3})
+      console.log("component hide: ", this)
+      this.loading = false
     }
   }
 }
@@ -25,22 +27,22 @@ export default {
 
 <style lang="scss">
 .global-mask {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100vh;
-    z-index: 9;
-    background: white;
-    will-change: opacity;
-    opacity: 0;
-    /* visibility: hidden; */
-    transition: opacity 0.3s ease-out;
-    pointer-events: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  z-index: 9;
+  background: white;
+  will-change: opacity;
+  opacity: 0;
+  /* visibility: hidden; */
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
 
-    &.active {
-        opacity: 1;
-        /* visibility: visible; */
-    }
+  &.active {
+    opacity: 1;
+    /* visibility: visible; */
+  }
 }
 </style>

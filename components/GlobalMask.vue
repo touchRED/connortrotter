@@ -1,29 +1,6 @@
 <template>
-  <div v-bind:class="['global-mask', {active: loading}]"></div>
+  <div class="global-mask"></div>
 </template>
-
-<script>
-import { TweenMax } from 'gsap'
-
-export default {
-  data: () => ({
-    loading: false
-  }),
-  methods: {
-    start() {
-      // TweenMax.to('.global-mask', 0.3, {autoAlpha: 1})
-      console.log("component start: ", this)
-      this.loading = true
-    },
-    finish() { },
-    hide() {
-      //   TweenMax.to('.global-mask', 0.3, {autoAlpha: 0, delay: 0.3})
-      console.log("component hide: ", this)
-      this.loading = false
-    }
-  }
-}
-</script>
 
 <style lang="scss">
 .global-mask {

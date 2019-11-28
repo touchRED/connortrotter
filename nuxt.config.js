@@ -18,7 +18,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: '~/components/GlobalMask.vue',
+  loading: false,
   /*
   ** Global CSS
   */

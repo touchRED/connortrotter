@@ -1,7 +1,7 @@
 <template>
   <div class="project">
     <div class="project-hero">
-      <div class="project-hero__block" v-for="block in channelData.contents" v-bind:key="block.id">
+      <div class="project-hero__block" v-for="block in channelData" v-bind:key="block.id">
         <div
           class="project-hero__image preload"
           v-if="block.image"
@@ -24,20 +24,16 @@ import axios from 'axios'
 import { TweenMax } from 'gsap'
 
 export default {
-  asyncData(context) {
-    // console.log(context)
-    return axios.get("http://api.are.na/v2/channels/" + context.params.slug)
-      .then((res) => {
-        // console.log(res.data)
-        return { channelData: res.data }
-      })
+  asyncData({ params }) {
+    return { slug: params.slug }
+  },
+  computed: {
+    channelData() {
+      return this.$store.getters.getChannelContents(this.slug)
+    }
   },
   mounted() {
-    this.$nextTick(() => {
-      // console.log("GlobalMask root-attached: ", this.$root.$loading)
-      this.$root.$loading.hide()
-    })
-
+    console.log(this)
     let preloads = this.$el.querySelectorAll(".preload")
 
     preloads.forEach(preload => {
@@ -58,12 +54,28 @@ export default {
 
       image.src = preloadURL;
     })
+  },
+  transition: {
+    css: false,
+    beforeEnter(el) {
+      TweenMax.set(el, { autoAlpha: 0 })
+    },
+    enter(el, done) {
+      // console.log("enter: ", this, el)
+      TweenMax.to(el, 0.5, { autoAlpha: 1, onComplete: done })
+    },
+    leave(el, done) {
+      // console.log("leave: ", this, el)
+      TweenMax.to(el, 0.5, { autoAlpha: 0, onComplete: done })
+    }
   }
 }
 </script>
 
 <style lang="scss">
 .project {
+  /* opacity: 0; */
+
   &-hero {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

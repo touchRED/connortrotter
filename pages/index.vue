@@ -8,7 +8,7 @@
       <h1>Recent Work</h1>
       <div class="work__grid">
         <div class="work__item" v-for="block in channelData.slice(1)" v-bind:key="block.id">
-          <nuxt-link v-bind:to="'/project/' + block.slug + '/'" prefetch>
+          <nuxt-link v-bind:to="'/project/' + block.slug + '/'">
             <div
               class="work__item-image preload"
               v-bind:preload="block.contents[0].image.display.url"
@@ -23,48 +23,18 @@
 
 <script>
 import Shader from '~/components/Shader.vue'
-import axios from 'axios'
 import { TweenMax } from 'gsap'
-import GlobalMask from '~/components/GlobalMask.vue'
 
 export default {
-  asyncData(context) {
-    return axios.get("http://api.are.na/v2/channels/site-yufxd4bzdt8")
-      .then((res) => {
-        let promises = []
-        res.data.contents = res.data.contents.map(content => {
-          if (content.base_class == 'Channel') {
-            return axios.get("http://api.are.na/v2/channels/" + content.slug).then(res => {
-              return res.data
-            })
-          } else {
-            return content
-          }
-        })
-
-        // return { channelData: res.data}
-        return Promise.all(res.data.contents)
-      })
-      .then(fetched => {
-        // console.log(fetched)
-        return { channelData: fetched }
-      })
+  computed: {
+    channelData() {
+      return this.$store.state.channelData
+    }
   },
   components: {
-    Shader,
-    GlobalMask
+    Shader
   },
   mounted() {
-    this.$nextTick(() => {
-      console.log("GlobalMask include: ", GlobalMask)
-      console.log("GlobalMask root-attached: ", this.$root.$loading)
-      // console.log("this: ", this)
-      this.$root.$loading.hide()
-    })
-    // if(GlobalMask.hide){
-    // GlobalMask.hide()
-    // }
-
     let preloads = this.$el.querySelectorAll(".preload")
 
     preloads.forEach(preload => {
@@ -79,6 +49,20 @@ export default {
 
       image.src = preloadURL;
     })
+  },
+  transition: {
+    css: false,
+    beforeEnter(el) {
+      TweenMax.set(el, { autoAlpha: 0 })
+    },
+    enter(el, done) {
+      // console.log("enter: ", this, el)
+      TweenMax.to(el, 0.5, { autoAlpha: 1, onComplete: done })
+    },
+    leave(el, done) {
+      // console.log("leave: ", this, el)
+      TweenMax.to(el, 0.5, { autoAlpha: 0, onComplete: done })
+    }
   }
 }
 </script>

@@ -39,12 +39,20 @@ export default {
 
     preloads.forEach(preload => {
       let preloadURL = preload.getAttribute("preload")
+      if (preloadURL == "") return
       let image = new Image();
+      TweenMax.set(preload, { autoAlpha: 0 })
 
       /* --- Use Img load to measure for background-image --- */
       image.onload = () => {
-        preload.style.backgroundImage = "url(" + preloadURL + ")";
+        if (preload.tagName.toLowerCase() == "img") {
+          preload.src = preloadURL;
+        } else {
+          preload.style.backgroundImage = "url(" + preloadURL + ")";
+        }
+
         preload.className += " preloaded";
+        TweenMax.to(preload, 0.4, { autoAlpha: 1, ease: Sine.easeOut })
       };
 
       image.src = preloadURL;
@@ -139,8 +147,15 @@ export default {
     &-image {
       padding-bottom: 70%;
       margin-bottom: 10px;
-      background-position: center;
-      background-size: cover;
+      background-position: center bottom;
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      @media (max-width: 768px) {
+        width: 106%;
+        position: relative;
+        left: -3%;
+      }
     }
 
     p {

@@ -10,7 +10,7 @@
           <img class="preload" v-bind:preload="block.image ? block.image.display.url : ''" />
         </div>
         <div
-          class="project-hero__content"
+          class="project-hero__content js-fade"
           v-else
           v-html="block.content_html ? block.content_html : ''"
         ></div>
@@ -21,7 +21,7 @@
 
 <script>
 import axios from 'axios'
-import { TweenMax } from 'gsap'
+import { TweenMax, Sine } from 'gsap'
 
 export default {
   asyncData({ params }) {
@@ -33,13 +33,14 @@ export default {
     }
   },
   mounted() {
-    console.log(this)
+    // console.log(this)
     let preloads = this.$el.querySelectorAll(".preload")
 
     preloads.forEach(preload => {
       let preloadURL = preload.getAttribute("preload")
       if (preloadURL == "") return
       let image = new Image();
+      TweenMax.set(preload, { autoAlpha: 0 })
 
       /* --- Use Img load to measure for background-image --- */
       image.onload = () => {
@@ -50,6 +51,7 @@ export default {
         }
 
         preload.className += " preloaded";
+        TweenMax.to(preload, 0.4, { autoAlpha: 1, ease: Sine.easeOut })
       };
 
       image.src = preloadURL;
@@ -58,11 +60,14 @@ export default {
   transition: {
     css: false,
     beforeEnter(el) {
-      TweenMax.set(el, { autoAlpha: 0 })
+      let fades = el.querySelectorAll(".js-fade")
+      TweenMax.set(fades, { autoAlpha: 0 })
     },
     enter(el, done) {
       // console.log("enter: ", this, el)
-      TweenMax.to(el, 0.5, { autoAlpha: 1, onComplete: done })
+      // TweenMax.to(el, 0.5, { autoAlpha: 1, onComplete: done })
+      let fades = el.querySelectorAll(".js-fade")
+      TweenMax.staggerFromTo(fades, 0.4, { autoAlpha: 0 }, { autoAlpha: 1, ease: Sine.easeOut, onComplete: done }, 0.2)
     },
     leave(el, done) {
       // console.log("leave: ", this, el)
@@ -92,12 +97,16 @@ export default {
 
     &__image {
       padding-bottom: 70%;
-      background-position: center;
+      background-position: center bottom;
       background-size: contain;
       background-repeat: no-repeat;
 
       @media (max-width: 768px) {
+        width: 106%;
+        position: relative;
+        left: -3%;
         padding: 0;
+        background-image: none !important;
       }
 
       img {
@@ -113,10 +122,12 @@ export default {
 
     &__content {
       font-family: "Inter", system-ui, sans-serif;
+      /* opacity: 0; */
 
       h1 {
         font-size: 48px;
         margin-bottom: 15px;
+        font-weight: bold;
 
         @media (max-width: 768px) {
           font-size: 28px;
@@ -127,24 +138,19 @@ export default {
         font-size: 18px;
         line-height: 26px;
         color: black;
-        /* font-weight: 500; */
-        margin: 0 auto 30px;
-
-        &:last-child {
-          margin: 0 auto;
-        }
+        margin: 30px auto 0;
 
         @media (max-width: 768px) {
           font-size: 14px;
           line-height: normal;
-          margin-bottom: 15px;
+          margin: 15px auto 0;
         }
+      }
 
-        a {
-          text-decoration: underline;
-          font-size: inherit;
-          color: black;
-        }
+      a {
+        text-decoration: underline;
+        font-size: inherit;
+        color: black;
       }
     }
   }

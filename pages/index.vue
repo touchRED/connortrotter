@@ -100,6 +100,7 @@ export default {
     p {
       font-size: 28px;
       line-height: 38px;
+      letter-spacing: 0;
       color: black;
       font-weight: 500;
       font-family: "Inter", system-ui, sans-serif;
@@ -126,6 +127,7 @@ export default {
 .work {
   h1 {
     font-size: 24px;
+    letter-spacing: 0;
     color: #4a4a4a;
     margin-bottom: 30px;
     font-weight: 100;
@@ -162,6 +164,7 @@ export default {
       font-size: 16px;
       color: #4a4a4a;
       font-weight: 100;
+      letter-spacing: 0;
       font-family: "Inter", system-ui, sans-serif;
 
       @media (max-width: 768px) {

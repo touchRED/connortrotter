@@ -14,6 +14,9 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  serverMiddleware: [
+    '~/api/main'
+  ],
   /*
   ** Customize the progress-bar color
   */

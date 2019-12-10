@@ -22,8 +22,8 @@ export default {
             this.tl = new TimelineMax({paused: true, delay: 1})
             this.tl.fromTo(this.$el, 0.6, {autoAlpha: 0}, {autoAlpha: 1, ease: Sine.easeOut})
             this.tl.fromTo(this.$el.querySelector("h1"), 0.6, {color: "#ffffff"}, {color: "#000000", ease: Sine.easeOut})
-            this.tl.fromTo(this.$el.querySelector("h1"), 1, {x: 0, y: 0}, {x: 5, y: -7, ease: Expo.easeInOut})
-            this.tl.fromTo(".global-mask", 1, {autoAlpha: 1}, {autoAlpha: 0, ease: Expo.easeInOut}, "-=0.9")
+            this.tl.fromTo(this.$el.querySelector("h1"), 0.8, {x: 0, y: 0}, {x: 5, y: -7, force3D: true, ease: Expo.easeOut})
+            this.tl.fromTo(".global-mask", 0.4, {autoAlpha: 1}, {autoAlpha: 0, force3D: true, ease: Sine.easeOut}, "-=0.8")
         }
     },
     mounted(){

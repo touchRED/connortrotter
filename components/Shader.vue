@@ -1,5 +1,5 @@
 <template>
-  <canvas width="670" height="496"></canvas>
+  <canvas v-on:click="sendPost" width="670" height="496"></canvas>
 </template>
 
 <script>
@@ -8,11 +8,20 @@ import * as createShader from 'gl-shader'
 import * as triangle from "a-big-triangle"
 import * as getPixels from "get-pixels"
 import { TweenMax, Sine } from 'gsap'
+import axios from 'axios'
 
 import vertShader from 'raw-loader!glslify-loader!../static/shaders/noise-grid/shader.vert'
 import fragShader from 'raw-loader!glslify-loader!../static/shaders/noise-grid/collage.glsl'
 
 export default {
+  methods: {
+    sendPost: function() {
+      return axios.get("/api/contact")
+          .then((res) => {
+            console.log(res)
+          })
+    }
+  },
   beforeCreate: function () {
     // console.log("beforeCreate")
     this.state = {}

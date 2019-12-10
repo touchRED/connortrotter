@@ -128,6 +128,7 @@ export default {
         font-size: 48px;
         margin-bottom: 15px;
         font-weight: bold;
+        letter-spacing: 0;
 
         @media (max-width: 768px) {
           font-size: 28px;
@@ -137,6 +138,7 @@ export default {
       p {
         font-size: 18px;
         line-height: 26px;
+        letter-spacing: 0;
         color: black;
         margin: 30px auto 0;
 

@@ -134,6 +134,13 @@ export default {
           font-size: 28px;
           letter-spacing: -0.8px;
         }
+
+        a {
+          text-decoration: none;
+          font-size: inherit;
+          color: black;
+          border-bottom: 4px solid black;
+        }
       }
 
       p {
@@ -147,12 +154,28 @@ export default {
           font-size: 14px;
           line-height: normal;
           margin: 15px auto 0;
-          letter-spacing: -0.8px;
+          letter-spacing: -0.5px;
+        }
+
+        a {
+          text-decoration: underline;
+        }
+      }
+
+      li {
+        font-size: 18px;
+        line-height: 26px;
+        letter-spacing: 0;
+        color: black;
+
+        @media (max-width: 768px) {
+          font-size: 14px;
+          line-height: normal;
+          letter-spacing: -0.5px;
         }
       }
 
       a {
-        text-decoration: underline;
         font-size: inherit;
         color: black;
       }

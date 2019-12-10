@@ -132,6 +132,7 @@ export default {
 
         @media (max-width: 768px) {
           font-size: 28px;
+          letter-spacing: -0.8px;
         }
       }
 
@@ -146,6 +147,7 @@ export default {
           font-size: 14px;
           line-height: normal;
           margin: 15px auto 0;
+          letter-spacing: -0.8px;
         }
       }
 

@@ -47,7 +47,7 @@ export default {
                 // console.log("down")
                 TweenMax.to(this.$el, 0.5, {autoAlpha: 0, ease: Expo.easeInOut})
                 this.isOn = false
-            }else if(delta < 0 && !this.isOn) {
+            }else if(delta < 0 && !this.isOn && window.scrollY < 800) {
                 // console.log("up")
                 TweenMax.to(this.$el, 0.5, {autoAlpha: 1, ease: Expo.easeInOut})
                 this.isOn = true

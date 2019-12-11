@@ -92,6 +92,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     padding: 50px 0px;
+    margin: 0 auto;
 
     @media (max-width: 768px) {
       padding: 30px 0px 0px;

@@ -92,7 +92,7 @@ export default {
 canvas {
   width: 100%;
   max-width: 670px;
-  margin-right: 100px;
+  margin-right: 60px;
   opacity: 0;
 
   @media (max-width: 768px) {

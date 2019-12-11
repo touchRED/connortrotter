@@ -7,9 +7,15 @@
 </template>
 
 <script>
-import { TimelineMax, Sine, Expo } from 'gsap'
+import { TimelineMax, TweenMax, Sine, Expo } from 'gsap'
 
 export default {
+    data(){
+        return {
+            scrollY: 0,
+            isOn: true
+        }
+    },
     beforeCreate(){
         // console.log("beforeCreate:", this)
     },
@@ -28,6 +34,26 @@ export default {
     },
     mounted(){
         // console.log("mounted:", this)
+        let overflowEl = window.innerWidth > 768 ? window : document.querySelector("main")
+
+        overflowEl.addEventListener("scroll", (e) => {
+            // console.log(overflowEl)
+
+            let delta = (window.innerWidth > 768 ? overflowEl.scrollY : overflowEl.scrollTop) - this.scrollY
+
+            if(delta > 0 && this.isOn){
+                // console.log("down")
+                TweenMax.to(this.$el, 0.5, {autoAlpha: 0, ease: Expo.easeInOut})
+                this.isOn = false
+            }else if(delta < 0 && !this.isOn) {
+                // console.log("up")
+                TweenMax.to(this.$el, 0.5, {autoAlpha: 1, ease: Expo.easeInOut})
+                this.isOn = true
+            }
+
+            this.scrollY = (window.innerWidth > 768 ? overflowEl.scrollY : overflowEl.scrollTop) 
+        })
+
         if(this.tl){
             this.tl.play()
         }

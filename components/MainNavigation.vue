@@ -43,7 +43,7 @@ export default {
             // let delta = (window.innerWidth > 768 ? overflowEl.scrollY : overflowEl.scrollTop) - this.scrollY
             let delta = window.scrollY - this.scrollY
 
-            if(delta > 0 && this.isOn){
+            if(delta > 0 && this.isOn && window.scrollY > 100){
                 // console.log("down")
                 TweenMax.to(this.$el, 0.5, {autoAlpha: 0, ease: Expo.easeInOut})
                 this.isOn = false

@@ -34,12 +34,14 @@ export default {
     },
     mounted(){
         // console.log("mounted:", this)
-        let overflowEl = window.innerWidth > 768 ? window : document.querySelector("main")
+        // let overflowEl = window.innerWidth > 768 ? window : document.querySelector("main")
+        let overflowEl = window
 
         overflowEl.addEventListener("scroll", (e) => {
             // console.log(overflowEl)
 
-            let delta = (window.innerWidth > 768 ? overflowEl.scrollY : overflowEl.scrollTop) - this.scrollY
+            // let delta = (window.innerWidth > 768 ? overflowEl.scrollY : overflowEl.scrollTop) - this.scrollY
+            let delta = window.scrollY - this.scrollY
 
             if(delta > 0 && this.isOn){
                 // console.log("down")
@@ -51,7 +53,8 @@ export default {
                 this.isOn = true
             }
 
-            this.scrollY = (window.innerWidth > 768 ? overflowEl.scrollY : overflowEl.scrollTop) 
+            // this.scrollY = (window.innerWidth > 768 ? overflowEl.scrollY : overflowEl.scrollTop) 
+            this.scrollY = window.scrollY
         })
 
         if(this.tl){

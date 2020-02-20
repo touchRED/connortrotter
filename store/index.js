@@ -7,7 +7,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-    setChannelData(state, data){
+		setChannelData(state, data){
         state.channelData = data
         data.forEach(block => {
             if(block.base_class == "Channel") {

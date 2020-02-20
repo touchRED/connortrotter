@@ -2,8 +2,6 @@ import express from 'express'
 const app = express()
 
 app.get('/', (req, res) => {
-    // Validate, sanitize and send
-    // console.log("hmm does this work")
     res.write("Hey!")
     res.end()
 })

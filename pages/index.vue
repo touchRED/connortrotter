@@ -11,7 +11,7 @@
           <nuxt-link v-bind:to="'/project/' + block.slug + '/'">
             <div
               class="work__item-image preload"
-              v-bind:preload="block.contents[0].image.display.url"
+              v-bind:preload="block.contents[0].image.original.url"
             ></div>
           </nuxt-link>
           <p>{{ block.title }}</p>
@@ -79,7 +79,9 @@ export default {
 .hero {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 60px;
+  margin: 0 auto 60px;
+  width: 100%;
+  max-width: 1320px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -87,12 +89,12 @@ export default {
 
   &__text {
     width: 100%;
-    max-width: 495px;
+    /* max-width: 495px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 50px 0px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 
     @media (max-width: 768px) {
       padding: 30px 0px 0px;
@@ -126,6 +128,10 @@ export default {
 }
 
 .work {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+
   h1 {
     font-size: 24px;
     letter-spacing: 0;

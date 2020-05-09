@@ -5,9 +5,9 @@
         <div
           class="project-hero__image preload"
           v-if="block.image"
-          v-bind:preload="block.image ? block.image.display.url : ''"
+          v-bind:preload="block.image ? block.image.original.url : ''"
         >
-          <img class="preload" v-bind:preload="block.image ? block.image.display.url : ''" />
+          <img class="preload" v-bind:preload="block.image ? block.image.original.url : ''" />
         </div>
         <div
           class="project-hero__content js-fade"

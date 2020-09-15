@@ -1,7 +1,7 @@
 <template>
   <div class="project">
     <div class="project-hero">
-      <div class="project-hero__block" v-for="block in channelData" v-bind:key="block.id">
+      <div class="project-hero__block" v-for="block in channelData.contents" v-bind:key="block.id">
         <div
           class="project-hero__image preload"
           v-if="block.image"
@@ -10,7 +10,7 @@
           <img class="preload" v-bind:preload="block.image ? block.image.original.url : ''" />
         </div>
         <div
-          class="project-hero__content js-fade"
+          class="project-hero__content"
           v-else
           v-html="block.content_html ? block.content_html : ''"
         ></div>
@@ -57,23 +57,23 @@ export default {
       image.src = preloadURL;
     })
   },
-  transition: {
-    css: false,
-    beforeEnter(el) {
-      let fades = el.querySelectorAll(".js-fade")
-      TweenMax.set(fades, { autoAlpha: 0 })
-    },
-    enter(el, done) {
-      // console.log("enter: ", this, el)
-      // TweenMax.to(el, 0.5, { autoAlpha: 1, onComplete: done })
-      let fades = el.querySelectorAll(".js-fade")
-      TweenMax.staggerFromTo(fades, 0.4, { autoAlpha: 0 }, { autoAlpha: 1, ease: Sine.easeOut, onComplete: done }, 0.2)
-    },
-    leave(el, done) {
-      // console.log("leave: ", this, el)
-      TweenMax.to(el, 0.5, { autoAlpha: 0, onComplete: done })
-    }
-  }
+  // transition: {
+  //   css: false,
+  //   beforeEnter(el) {
+  //     let fades = el.querySelectorAll(".js-fade")
+  //     TweenMax.set(fades, { autoAlpha: 0 })
+  //   },
+  //   enter(el, done) {
+  //     // console.log("enter: ", this, el)
+  //     TweenMax.to(el, 0.5, { autoAlpha: 1, onComplete: done })
+  //     let fades = el.querySelectorAll(".js-fade")
+  //     TweenMax.staggerFromTo(fades, 0.4, { autoAlpha: 0 }, { autoAlpha: 1, ease: Sine.easeOut, onComplete: done }, 0.2)
+  //   },
+  //   leave(el, done) {
+  //     // console.log("leave: ", this, el)
+  //     TweenMax.to(el, 0.5, { autoAlpha: 0, onComplete: done })
+  //   }
+  // }
 }
 </script>
 
@@ -132,6 +132,7 @@ export default {
 
         @media (max-width: 768px) {
           font-size: 28px;
+          margin-bottom: 30px;
           letter-spacing: -0.8px;
         }
 
@@ -151,10 +152,11 @@ export default {
         margin: 30px auto 0;
 
         @media (max-width: 768px) {
-          font-size: 14px;
+          font-size: 16px;
+          font-weight: 300;
           line-height: normal;
           margin: 15px auto 0;
-          letter-spacing: -0.5px;
+          /* letter-spacing: -0.5px; */
         }
 
         a {
@@ -169,9 +171,10 @@ export default {
         color: black;
 
         @media (max-width: 768px) {
-          font-size: 14px;
+          font-size: 16px;
+          font-weight: 300;
           line-height: normal;
-          letter-spacing: -0.5px;
+          /* letter-spacing: -0.5px; */
         }
       }
 

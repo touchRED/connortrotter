@@ -22,7 +22,8 @@ export default {
 
 <style lang="scss">
 html {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -47,7 +48,7 @@ main {
     /* height: 100vh; */
     /* overflow-x: hidden; */
     /* overflow-y: auto; */
-		/* -webkit-overflow-scrolling: touch; */
+    /* -webkit-overflow-scrolling: touch; */
   }
 }
 
@@ -81,16 +82,16 @@ main {
 }
 
 @font-face {
-	font-family: "Inter";
-	src: url("/fonts/Inter-Regular.woff") format("woff");
-	font-weight: 100;
-	font-style: normal;
+  font-family: "Inter";
+  src: url("/fonts/Inter-Regular.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "Inter";
-	src: url("/fonts/Inter-Medium.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
+  font-family: "Inter";
+  src: url("/fonts/Inter-Medium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 </style>

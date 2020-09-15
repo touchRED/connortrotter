@@ -30,8 +30,8 @@ import { TweenMax } from 'gsap'
 export default {
   computed: {
     channelData() {
-      console.log("frontend:", this.$store.state.channelData)
-      console.log("routes:", this.$store.state.routes)
+      // console.log("frontend:", this.$store.state.channelData)
+      // console.log("routes:", this.$store.state.routes)
       return this.$store.state.channelData
     }
   },
@@ -145,8 +145,8 @@ export default {
     font-family: "Inter", system-ui, sans-serif;
 
     @media (max-width: 768px) {
-      margin-bottom: 0;
       font-size: 14px;
+      margin-bottom: 15px;
     }
   }
 

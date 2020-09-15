@@ -7,7 +7,14 @@
           v-if="block.image"
           v-bind:preload="block.image ? block.image.original.url : ''"
         >
-          <img class="preload" v-bind:preload="block.image ? block.image.original.url : ''" />
+          <a
+            v-if="block.source"
+            v-bind:href="block.source.url ? block.source.url : ''"
+            target="_blank"
+          >
+            <img class="preload" v-bind:preload="block.image ? block.image.original.url : ''" />
+          </a>
+          <img class="preload" v-else v-bind:preload="block.image ? block.image.original.url : ''" />
         </div>
         <div
           class="project-hero__content"

@@ -106,6 +106,7 @@ export default {
     }
 
     p {
+      width: 100%;
       font-size: 28px;
       line-height: 38px;
       letter-spacing: 0;

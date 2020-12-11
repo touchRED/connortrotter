@@ -3,7 +3,7 @@
     <nuxt-link to="/">
       <h1>connor trotter</h1>
     </nuxt-link>
-    <a href="mailto:connor@zero.nyc">
+    <a href="mailto:connor.trotter.dev@gmail.com">
       <div class="mail">
         <svg
           width="51"
@@ -155,7 +155,7 @@ export default {
         this.isOn = true
       }
 
-      // this.scrollY = (window.innerWidth > 768 ? overflowEl.scrollY : overflowEl.scrollTop) 
+      // this.scrollY = (window.innerWidth > 768 ? overflowEl.scrollY : overflowEl.scrollTop)
       this.scrollY = window.scrollY
     })
 

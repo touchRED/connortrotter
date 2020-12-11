@@ -145,7 +145,9 @@ export default {
 
         a {
           text-decoration: none;
+          font-weight: inherit;
           font-size: inherit;
+          letter-spacing: inherit;
           color: black;
           border-bottom: 4px solid black;
         }

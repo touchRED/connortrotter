@@ -107,9 +107,9 @@ export default {
 
     p {
       width: 100%;
-      font-size: 28px;
+      font-size: 34px;
       line-height: 38px;
-      letter-spacing: 0;
+      letter-spacing: -0.8px;
       color: black;
       font-weight: 500;
       font-family: "Inter", system-ui, sans-serif;
@@ -121,7 +121,8 @@ export default {
 
       @media (max-width: 768px) {
         font-size: 20px;
-        line-height: 28px;
+        line-height: 25px;
+        letter-spacing: -0.4px;
       }
 
       a {

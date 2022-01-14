@@ -69,7 +69,7 @@ const recursiveGetChannel = async (url, depth) => {
     // })
 
     if (res.data.base_class == "Channel") {
-      res.data.contents = res.data.contents.reverse().map(content => {
+      res.data.contents = res.data.contents.map(content => {
         if (content.base_class == "Channel") {
           return recursiveGetChannel(
             "http://api.are.na/v2/channels/" + content.slug,

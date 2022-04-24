@@ -44,7 +44,7 @@ main {
   padding: 170px 60px;
 
   @media (max-width: 768px) {
-    padding: 105px 30px 200px;
+    padding: 90px 10px 200px;
     /* height: 100vh; */
     /* overflow-x: hidden; */
     /* overflow-y: auto; */

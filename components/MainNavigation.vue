@@ -181,7 +181,7 @@ export default {
   opacity: 0;
 
   @media (max-width: 768px) {
-    padding: 35px 30px;
+    padding: 30px 10px;
     align-items: flex-start;
   }
 
@@ -197,11 +197,11 @@ export default {
     h1 {
       color: white;
       font-size: 16px;
-      padding: 9px 15px;
+      padding: 9px 14px;
       margin: 0;
       position: relative;
       font-weight: 100;
-      letter-spacing: 1px;
+      letter-spacing: 0.3px;
       font-family: monospace;
       border: 1px solid black;
       background: white;

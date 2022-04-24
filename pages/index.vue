@@ -102,7 +102,7 @@ export default {
     /* margin: 0 auto; */
 
     @media (max-width: 768px) {
-      padding: 30px 0px 0px;
+      padding: 15px 0px 0px;
     }
 
     p {
@@ -120,9 +120,10 @@ export default {
       }
 
       @media (max-width: 768px) {
-        font-size: 20px;
-        line-height: 25px;
+        font-size: 26px;
+        line-height: 1.25;
         letter-spacing: -0.4px;
+        margin: 0 auto 15px;
       }
 
       a {
@@ -164,6 +165,7 @@ export default {
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
       grid-row-gap: 30px;
+      padding: 0 20px;
     }
   }
 

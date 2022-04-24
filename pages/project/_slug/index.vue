@@ -90,16 +90,12 @@ export default {
 
   &-hero {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 60px;
+    grid-template-columns: 1fr;
+    grid-gap: 30px;
     align-items: center;
 
     @media (max-width: 768px) {
-      grid-template-columns: 1fr;
       grid-gap: 30px;
-    }
-
-    &__block {
     }
 
     &__image {
@@ -129,7 +125,13 @@ export default {
 
     &__content {
       font-family: "Inter", system-ui, sans-serif;
-      /* opacity: 0; */
+      max-width: 620px;
+      margin: 0 auto;
+      
+      @media (max-width: 768px) {
+        padding: 0 6px;
+        max-width: 100%;
+      }
 
       h1 {
         font-size: 48px;
@@ -158,14 +160,15 @@ export default {
         line-height: 26px;
         letter-spacing: 0;
         color: black;
-        margin: 30px auto 0;
+        margin: 0;
+
+        &:not(:first-child) {
+          margin: 30px auto 0;
+        }
 
         @media (max-width: 768px) {
-          font-size: 16px;
           font-weight: 300;
           line-height: normal;
-          margin: 15px auto 0;
-          /* letter-spacing: -0.5px; */
         }
 
         a {

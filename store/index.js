@@ -42,7 +42,7 @@ export const actions = {
       "http://api.are.na/v2/channels/site-yufxd4bzdt8",
       0
     ).then(fetched => {
-      console.log("hmm...", fetched);
+      // console.log("hmm...", fetched);
       store.commit("setChannelData", fetched);
     });
   }
@@ -51,7 +51,7 @@ export const actions = {
 const recursiveGetChannel = async (url, depth) => {
   const temporaryDepthLimit = 5;
 
-  console.log(depth);
+  // console.log(depth);
 
   if (depth > temporaryDepthLimit) return null;
 
